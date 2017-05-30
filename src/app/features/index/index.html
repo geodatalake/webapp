@@ -44,6 +44,12 @@
 
 </div>
 <div class="layer-switcher" ng-show="index.switcherShow" ng-mouseover="index.switcherShow = true" ng-mouseout="index.switcherShow = false;index.layerImgSrc = './images/layer-switcher.png'" >
+    <h5>Layers</h5>
+    <table>
+        <tr ng-repeat="layer in index.layers">
+            <td><input ng-click="index.toggleLayer(layer)" type="checkbox" ng-model="index.selectedBaseLayer" value="{{layer.get('title')}}" type="checkbox"></td><td>{{layer.get('title')}}</td>
+        </tr>
+    </table>
     <h5>Base Layers</h5>
     <table>
         <tr ng-repeat="layer in index.baseLayers">

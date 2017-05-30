@@ -31,6 +31,39 @@ class MapVector{
             cb();
 
     }
+    /**
+     * Takes a name and a wkt array and adds a vector layer with the params
+     *
+     * @param name (String)
+     * @param wkt (WKT Array)
+     * @param cb (callBack function)
+     */
+    addWKT(name, wkt, cb) {
+        var format = new ol.format.WKT();
+        var feature = [];
+
+        for (var i=0; i < wkt; i++) {
+            feature.push(format.readFeature(wkt[i], {
+                dataProjection: 'EPSG:4326',
+                featureProjection: 'EPSG:3857'
+            }));
+        }
+
+        var vector = new ol.layer.Vector({
+            source: new ol.source.Vector({
+                features: [feature]
+            }),
+            name: name
+        });
+
+
+        this.map.map.addLayer(vector);
+        this.map.layers.push(vector);
+
+        if (cb)
+            cb();
+
+    }
 }
 export default angular.module('services.mapVector', [])
     .service('mapVector', MapVector)

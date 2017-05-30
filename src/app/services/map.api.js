@@ -43,7 +43,19 @@ class Map {
      * @param name @param kml @param cb
      */
     addKML(name, kml,cb) {
-        this.vector.addKML(kml,cb)
+        this.vector.addKML(name,kml,cb)
+    }
+
+    /**
+     * Takes a name and a wkt array and adds a vector layer with the params. Optional callback function
+     * to do things after the layer is added.
+     *
+     * @param name (String)
+     * @param wkt (WKT Array)
+     * @param cb (callBack function)
+     */
+    addWKT(name, wkt,cb) {
+        this.vector.addWKT(name,wkt,cb)
     }
 
 

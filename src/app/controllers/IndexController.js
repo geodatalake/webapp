@@ -35,6 +35,9 @@ class IndexController {
         }
         this.http.post("/submit", {form: data}, function (err, httpResponse, body) {
             IndexController.result = JSON.parse(body);
+            map.addWKT("WKT Layer", IndexController.result.wkt, function(){
+                IndexController.layers = this.map.returnLayers()[1];
+            })
         });
     }
 
